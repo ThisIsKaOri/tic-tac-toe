@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Grid.css";
 
 type Option = 'X' | 'O' | '';
@@ -10,6 +10,7 @@ const Grid = () => {
     const [winner, setWinner] = useState<Option>('');
 
     const onResetHandler = () => {
+
         setGrid([['', '', ''], ['', '', ''], ['', '', '']]);
         setPlayer('X');
         setWinner('');
@@ -35,7 +36,7 @@ const Grid = () => {
                     
                     setWinner(player);
                 }
-
+                
                 setPlayer(player === 'X' ? player = 'O' : player = 'X');
             };
         }     
@@ -44,13 +45,20 @@ const Grid = () => {
     return(
         <>
         <h1 className="title"><kbd>Tic Tac Toe</kbd></h1>
-        {!winner && <h1>{`Player: ${player}`}</h1>}
-        {winner && <h1>{`Player: ${winner} wins!`}</h1>}
+        <h1>{!winner ? `Player ${player} move` : `Player ${winner} wins!`}</h1>
         <div className="grid">
             {grid.map((item, row) => {
+
                 return item.map((_, col) => {
-                    return <button className="box outline"
-                    onClick={() => onClickHandler(row, col, player)}
+
+                    const winning = 
+                    (grid[row][0] && grid[row][0] === grid[row][1] && grid[row][1]=== grid[row][2]) ||
+                    (grid[0][col] && grid[0][col] === grid[1][col] && grid[1][col]=== grid[2][col]) ||
+                    (row === col && grid[0][0] && grid[0][0] === grid[1][1] && grid[1][1] === grid[2][2]) ||
+                    (row + col === 2 && grid[0][2] && grid[0][2] === grid[1][1] && grid[1][1] === grid[2][0]);
+
+                    return <button className={`box outline ${winning ? "winning-box" : ""}`}
+                    onClick={() => {onClickHandler(row, col, player)}}
                     >{grid[row][col]}</button>
                 })
             })}
