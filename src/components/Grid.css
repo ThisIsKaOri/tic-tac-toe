@@ -1,0 +1,27 @@
+
+.grid {
+    max-width: 50%;
+    margin: auto;
+    display: grid;
+    gap: 0px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+.box {
+    aspect-ratio: 1/1;
+    margin: 0px;
+    font-size: 3rem;
+}
+
+.outline:hover {
+    background-color: #039ae530;
+}
+#reset {
+    margin: 10px 100%;
+}
+#reset:hover {
+    background-color: #546e7a30;
+}
+.title {
+    margin-top: 16px;
+}
