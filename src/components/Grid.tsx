@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import "./Grid.css";
 
 type Option = 'X' | 'O' | '';
@@ -25,14 +25,14 @@ const Grid = () => {
                 grid[row][col] = player;
                 setGrid([...grid]);
 
-                if(grid[0][0] && grid[0][0] === grid[0][1] && grid[0][1] === grid[0][2] ||
-                   grid[1][0] && grid[1][0] === grid[1][1] && grid[1][1] === grid[1][2] ||
-                   grid[2][0] && grid[2][0] === grid[2][1] && grid[2][1] === grid[2][2] ||
-                   grid[0][0] && grid[0][0] === grid[1][0] && grid[1][0] === grid[2][0] ||
-                   grid[0][1] && grid[0][1] === grid[1][1] && grid[1][1] === grid[2][1] ||
-                   grid[0][2] && grid[0][2] === grid[1][2] && grid[1][2] === grid[2][2] ||
-                   grid[0][0] && grid[0][0] === grid[1][1] && grid[1][1] === grid[2][2] ||
-                   grid[0][2] && grid[0][2] === grid[1][1] && grid[1][1] === grid[2][0]){
+                if((grid[0][0] && grid[0][0] === grid[0][1] && grid[0][1] === grid[0][2]) ||
+                   (grid[1][0] && grid[1][0] === grid[1][1] && grid[1][1] === grid[1][2]) ||
+                   (grid[2][0] && grid[2][0] === grid[2][1] && grid[2][1] === grid[2][2]) ||
+                   (grid[0][0] && grid[0][0] === grid[1][0] && grid[1][0] === grid[2][0]) ||
+                   (grid[0][1] && grid[0][1] === grid[1][1] && grid[1][1] === grid[2][1]) ||
+                   (grid[0][2] && grid[0][2] === grid[1][2] && grid[1][2] === grid[2][2]) ||
+                   (grid[0][0] && grid[0][0] === grid[1][1] && grid[1][1] === grid[2][2]) ||
+                   (grid[0][2] && grid[0][2] === grid[1][1] && grid[1][1] === grid[2][0])){
                     
                     setWinner(player);
                 }
